@@ -1,4 +1,4 @@
-defmodule VampireApp.Worker do
+defmodule VampireNumber.Worker do
   use GenServer
 
   def start_link(_) do
@@ -11,12 +11,12 @@ defmodule VampireApp.Worker do
 
   def handle_call({:find, range}, _from, state) do
     # IO.puts("process #{inspect(self())} calculating vampire numbers b/w #{range}")
-    {:reply, VampireApp.Find2.fetch(List.first(range), List.last(range)), state}
+    {:reply, VampireNumber.Find2.fetch(List.first(range), List.last(range)), state}
   end
 
   def handle_cast({:find, range}, state) do
     # IO.puts("process #{inspect(self())} calculating vampire numbers b/w #{range}")
-    VampireApp.Find2.fetch(List.first(range), List.last(range))
+    VampireNumber.Find2.fetch(List.first(range), List.last(range))
     {:noreply, state}
   end
 end

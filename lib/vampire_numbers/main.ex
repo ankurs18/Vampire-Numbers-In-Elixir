@@ -1,4 +1,4 @@
-defmodule VampireApp.Main do
+defmodule VampireNumber.Main do
   def start(min \\ 100_000, max \\ 200_000) do
     # total_length = max - min + 1
     # no_of_sublists = 128

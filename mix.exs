@@ -1,9 +1,9 @@
-defmodule VampireApp.MixProject do
+defmodule VampireNumber.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :vampire_app,
+      app: :vampire_number,
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
@@ -15,7 +15,7 @@ defmodule VampireApp.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {VampireApp.Application, []}
+      mod: {VampireNumber.Application, []}
     ]
   end
 

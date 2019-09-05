@@ -1,16 +1,16 @@
-# VampireApp
+# VampireNumber
 
 **TODO: Add description**
 
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `vampire_app` to your list of dependencies in `mix.exs`:
+by adding `vampire_number` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:vampire_app, "~> 0.1.0"}
+    {:vampire_number, "~> 0.1.0"}
   ]
 end
 ```

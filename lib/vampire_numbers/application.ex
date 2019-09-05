@@ -1,10 +1,10 @@
-defmodule VampireApp.Application do
+defmodule VampireNumber.Application do
   use Application
 
   defp poolboy_config do
     [
       {:name, {:local, :worker}},
-      {:worker_module, VampireApp.Worker},
+      {:worker_module, VampireNumber.Worker},
       {:size, 128},
       {:max_overflow, 0}
     ]
@@ -15,7 +15,7 @@ defmodule VampireApp.Application do
       :poolboy.child_spec(:worker, poolboy_config())
     ]
 
-    opts = [strategy: :one_for_one, name: VampireApp.Supervisor]
+    opts = [strategy: :one_for_one, name: VampireNumber.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

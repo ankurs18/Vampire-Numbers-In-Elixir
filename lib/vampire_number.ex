@@ -1,6 +1,6 @@
-defmodule VampireApp do
+defmodule VampireNumber do
   @moduledoc """
-  Documentation for VampireApp.
+  Documentation for VampireNumber.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule VampireApp do
 
   ## Examples
 
-      iex> VampireApp.hello()
+      iex> VampireNumber.hello()
       :world
 
   """

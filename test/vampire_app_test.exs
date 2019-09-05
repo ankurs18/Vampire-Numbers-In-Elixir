@@ -1,8 +1,8 @@
-defmodule VampireAppTest do
+defmodule VampireNumberTest do
   use ExUnit.Case
-  doctest VampireApp
+  doctest VampireNumber
 
   test "greets the world" do
-    assert VampireApp.hello() == :world
+    assert VampireNumber.hello() == :world
   end
 end

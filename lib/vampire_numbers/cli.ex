@@ -1,4 +1,4 @@
-defmodule VampireApp.CLI do
+defmodule VampireNumber.CLI do
   def run(argv) do
     argv
     |> parse_args
@@ -24,7 +24,7 @@ defmodule VampireApp.CLI do
   end
 
   def process({min, max}) do
-    # VampireApp.Find.fetch(String.to_integer(min), String.to_integer(max))
-    VampireApp.Main.start(String.to_integer(min), String.to_integer(max))
+    # VampireNumber.Find.fetch(String.to_integer(min), String.to_integer(max))
+    VampireNumber.Main.start(String.to_integer(min), String.to_integer(max))
   end
 end

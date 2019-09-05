@@ -1,4 +1,4 @@
-defmodule VampireApp.Find2 do
+defmodule VampireNumber.Find2 do
   def fetch(min, max) do
     list = Enum.to_list(min..max)
     # Enum.map(list, &isVampire/1)
