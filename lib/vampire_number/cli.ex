@@ -24,7 +24,7 @@ defmodule VampireNumber.CLI do
   end
 
   def process({min, max}) do
-    # VampireNumber.Find.fetch(String.to_integer(min), String.to_integer(max))
+    # IO.inspect VampireNumber.Find2.fetch(String.to_integer(min), String.to_integer(max))
     VampireNumber.Main.start(String.to_integer(min), String.to_integer(max))
   end
 end
