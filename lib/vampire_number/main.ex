@@ -6,7 +6,8 @@ defmodule VampireNumber.Main do
     # chunk_length = 128
     IO.puts("len: #{chunk_length}")
 
-    Enum.chunk_every(Enum.to_list(min..max), chunk_length)
+    Enum.to_list(min..max)
+    |> Enum.chunk_every(chunk_length)
     # |> IO.inspect(label: "list")
     |> Enum.map(fn i -> genserver_async_call(i) end)
     |> Enum.each(fn task -> await_and_inspect(task) end)
@@ -17,7 +18,9 @@ defmodule VampireNumber.Main do
   defp genserver_async_call(i) do
     Task.async(fn ->
       {:ok, pid} = VampireNumber.Supervisor.start_worker()
-      GenServer.call(pid, {:find, i}, :infinity)
+      x = GenServer.call(pid, {:find, i}, :infinity)
+      IO.inspect(x, label: "list")
+      x
     end)
   end
 

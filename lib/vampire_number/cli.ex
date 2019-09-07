@@ -5,7 +5,7 @@ defmodule VampireNumber.CLI do
     |> process
   end
 
-  def parse_args(args) do
+  defp parse_args(args) do
     parse = OptionParser.parse(args, aliases: [h: :help], switches: [help: :boolean])
 
     case parse do
@@ -15,16 +15,28 @@ defmodule VampireNumber.CLI do
     end
   end
 
-  def process(:help) do
+  defp process(:help) do
     IO.puts("""
-    usage: mix run proj1.exs <min> <max>
+    Usage: mix run proj1.exs <min> <max>
     """)
 
     System.halt(0)
   end
 
-  def process({min, max}) do
-    # IO.inspect VampireNumber.Find2.fetch(String.to_integer(min), String.to_integer(max))
-    VampireNumber.Main.start(String.to_integer(min), String.to_integer(max))
+  defp process({min, max}) do
+    min = String.to_integer(min)
+    max = String.to_integer(max)
+
+    if(max < min) do
+      IO.puts("""
+        Error: Bad range entered 
+        Usage: mix run proj1.exs <min> <max>
+      """)
+
+      System.halt(0)
+    else
+      # IO.inspect VampireNumber.Find2.fetch(String.to_integer(min), String.to_integer(max))
+      VampireNumber.Main.start(min, max)
+    end
   end
 end
