@@ -6,7 +6,6 @@ defmodule VampireNumber.Application do
       {DynamicSupervisor, strategy: :one_for_one, name: VampireNumber.Supervisor}
     ]
 
-    # opts = [strategy: :one_for_one, name: VampireNumber]
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end

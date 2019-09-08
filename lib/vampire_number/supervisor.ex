@@ -7,14 +7,10 @@ defmodule VampireNumber.Supervisor do
 
   @impl true
   def init(_init_arg) do
-    # children = [
-    #   {VampireNumber.Worker, []}
-    # ]
     DynamicSupervisor.init(strategy: :one_for_one)
   end
 
   def start_worker() do
-    # spec = {VampireNumber.Worker, range: range}
     DynamicSupervisor.start_child(__MODULE__, VampireNumber.Worker)
   end
 end

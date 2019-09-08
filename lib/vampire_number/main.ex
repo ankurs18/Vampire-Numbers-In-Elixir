@@ -1,38 +1,25 @@
 defmodule VampireNumber.Main do
   def start(min \\ 100_000, max \\ 200_000) do
     total_length = max - min + 1
-    no_of_sublists = System.schedulers_online * 2
-    #no_of_sublists = System.schedulers_online * 2
+    no_of_sublists = System.schedulers_online() * 2
     chunk_length = Integer.floor_div(total_length, no_of_sublists)
-    # chunk_length = 128
-    #IO.puts("len: #{chunk_length}")
-
-    Enum.to_list(min..max)
-    |> Enum.chunk_every(chunk_length)
-    # |> IO.inspect(label: "list")
-    |> Enum.map(fn i -> genserver_async_call(i) end)
-    |> Enum.each(fn task -> await_and_inspect(task) end)
-    # |> Enum.map(fn i -> genserver_call(i) end)
-    # |> Enum.each(fn task -> print(task) end)
+    range_list = Enum.to_list(min..max)
+    if chunk_length > 0 do
+      Enum.chunk_every(range_list, chunk_length)
+    else
+      [range_list]
+    end
+    |> Enum.map(fn range -> start_processing(range) end)
+    |> Enum.each(fn pid -> print_output(pid) end)
   end
 
-  defp genserver_async_call(i) do
-    Task.async(fn ->
-      {:ok, pid} = VampireNumber.Supervisor.start_worker()
-      x = GenServer.call(pid, {:find, i}, :infinity)
-      #IO.inspect(x, label: "list")
-      x
-    end)
-  end
-
-  defp genserver_call(i) do
+  defp start_processing(range) do
     {:ok, pid} = VampireNumber.Supervisor.start_worker()
-    GenServer.call(pid, {:find, i})
+    GenServer.cast(pid, {:find, range})
+    pid
   end
 
-  defp await_and_inspect(task),
-    do: task |> Task.await(:infinity) |> Enum.map(fn {k, v} -> IO.puts("#{k}#{v}") end)
-
-  defp print(task),
-    do: task |> Enum.map(fn {k, v} -> IO.puts("#{k}#{v}") end)
+  defp print_output(pid),
+    do:
+      pid |> GenServer.call({:fetch}, :infinity) |> Enum.map(fn {k, v} -> IO.puts("#{k}#{v}") end)
 end
