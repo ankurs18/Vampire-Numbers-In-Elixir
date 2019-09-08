@@ -36,7 +36,7 @@ defmodule VampireNumber.CLI do
       System.halt(0)
     else
       # IO.inspect VampireNumber.Find2.fetch(String.to_integer(min), String.to_integer(max))
-      VampireNumber.Main.start(min, max)
+      VampireNumber.Main2.start(min, max)
     end
   end
 end
